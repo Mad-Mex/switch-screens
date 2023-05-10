@@ -1,10 +1,19 @@
-import React from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import React, { useState } from 'react';
+import {  ActivityIndicator, View, Text,  } from 'react-native';
 import { useFonts } from 'expo-font';
-import styles from './styles';
 import theme from './constants/theme';
+import { PreviewResults, Search } from './screens';
+import { Header } from './components';
+
+
 
 export default function App() {
+  
+  const [searchLocation, setSearchLocation] = useState(false)
+
+  const onSearch = searchLocation => {
+    setSearchLocation(searchLocation)
+  }
 
   const [ loaded] = useFonts({
     'NotoSans-Light' : require("../assets/fonts/NotoSans-Light.ttf"),
@@ -20,9 +29,21 @@ export default function App() {
     )
   }
 
+  
   return (
-    <View style={styles.container}>
-      <Text style={ styles.title } >Travel Mate </Text>
+
+    <View>
+      <Header 
+        title={ searchLocation ? "Resultados" : "Búsqueda" }
+      />
+
+      { 
+        searchLocation 
+        ?  <PreviewResults searchLocation={ searchLocation } /> 
+        :  <Search  onSearch= { onSearch } /> 
+      }
+
     </View>
+    
   );
 }
