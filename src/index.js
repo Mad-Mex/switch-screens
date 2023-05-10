@@ -9,7 +9,7 @@ import { Header } from './components';
 
 export default function App() {
   
-  const [searchLocation, setSearchLocation] = useState(false)
+  const [searchLocation, setSearchLocation] = useState(null)
 
   const onSearch = searchLocation => {
     setSearchLocation(searchLocation)

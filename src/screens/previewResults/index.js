@@ -1,11 +1,22 @@
-import React from 'react'
-import { Text, View } from 'react-native'
+import React from 'react';
+import { FlatList } from 'react-native';
+import { CardInfoPreview } from '../../components';
 
-const PreviewResults = () => {
+const PreviewResults = ({ searchLocation }) => {
+
   return (
-    <View>
-        <Text> PreviewResults </Text>
-    </View>
+      
+    <FlatList 
+      data={ searchLocation.places }
+      renderItem={({ item, index }) => (
+      
+        <CardInfoPreview 
+          key={ index }
+          item = { item }
+        />
+      )}
+    />
+
   )
 }
 
